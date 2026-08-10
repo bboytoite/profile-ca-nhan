@@ -1,0 +1,104 @@
+# ==============================================================================
+# MULTI-AGENT STRICT ORCHESTRATION & DISCIPLINE MANIFEST
+# ==============================================================================
+ACTIVE_ORCHESTRATION_GUIDE: ".agents/AGENTS.md"
+KNOWLEDGE_BASE: "docs/LEARNINGS.md"
+DECISION_RECORDS: "docs/ADR/"
+
+# ------------------------------------------------------------------------------
+# 🚨 MANDATORY EXECUTION INTERCEPTOR (BỘ ĐÁNH CHẶN THỰC THI BẮT BUỘC)
+# ------------------------------------------------------------------------------
+INTERCEPTOR:
+  STRICT_MODE: true
+  RULE: "KHI NHẬN ĐƯỢC BẤT KỲ YÊU CẦU NÀO, CẤM NHẢY VÀO CODE NGAY! BẮT BUỘC PHẢI KHAI BÁO ACTIVE ROLE VÀ LẬP MA TRẬN NHIỆM VỤ TRƯỚC."
+  MANDATORY_OUTPUT_BANNER: |
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    🎭 [ACTIVE ROLE]: <PO | PM | UI Designer | Dev | QA | DevOps>
+    🎯 [CURRENT GATE]: <Phase 1: PRD | Phase 2: Tasks | Phase 3: Design | Phase 4: Code | Phase 5: QA>
+    📦 [INPUT ARTIFACTS]: <Files đã đọc>
+    📤 [DELIVERABLE]: <File sẽ tạo/sửa>
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# ------------------------------------------------------------------------------
+# ❌ FORBIDDEN ACTIONS (CÁC HÀNH VI BỊ CẤM TUYỆT ĐỐI)
+# ------------------------------------------------------------------------------
+FORBIDDEN_ACTIONS:
+  - "CẤM nhảy cóc qua mặt Sếp: Bắt buộc gọi `po_agent` (Product Owner) đầu tiên để tạo `docs/PRD.md` trước khi gọi UI Designer hoặc Developer!"
+  - "CẤM bỏ qua khâu đọc Skill: Mọi Subagent BẮT BUỘC phải dùng công cụ `view_file` đọc file `SKILL.md` được phân bổ trước khi viết code hoặc tạo tài liệu."
+  - "CẤM Developer viết code khi chưa có `docs/PRD.md` và `docs/TASKS.md`."
+  - "CẤM tự ý dùng mã màu/styling tùy tiện mà không dùng `src/styles/design-tokens.css` do UI Designer tạo."
+  - "CẤM tuyên bố hoàn thành tính năng khi chưa qua kiểm thử và chưa có `docs/QA_TEST_REPORT.md`."
+  - "CẤM một Agent tự tiện sửa file thuộc Folder Ownership của Role khác."
+
+# ------------------------------------------------------------------------------
+# 🔄 MANDATORY SUBAGENT PIPELINE (THỨ TỰ GỌI SUBAGENT BẮT BUỘC)
+# ------------------------------------------------------------------------------
+SUBAGENT_PIPELINE:
+  STAGE_1_BOSS: "po_agent (Product Owner) -> Tạo docs/PRD.md & docs/USER_STORIES.md [BẮT BUỘC ĐẦU TIÊN]"
+  STAGE_2_PLAN: "pm_agent (Project Manager) -> Tạo docs/TASKS.md & docs/SPRINT_PLAN.md"
+  STAGE_3_UI:   "ui_designer_agent (UI Designer) -> Tạo src/styles/design-tokens.css & docs/UI_SPECIFICATION.md"
+  STAGE_4_DEV:  "frontend_dev_agent / backend_dev_agent -> Lập trình mã nguồn tuân thủ Design Tokens"
+  STAGE_5_QA:   "qa_engineer_agent (QA Automation) -> Chạy E2E test & tạo docs/QA_TEST_REPORT.md"
+
+
+# ------------------------------------------------------------------------------
+# 🧠 CONTINUOUS LEARNING & MEMORY (HỆ THỐNG TỰ HỌC & GHI NHỚ)
+# ------------------------------------------------------------------------------
+LEARNING_SYSTEM:
+  ENABLED: true
+  STORAGE_FILE: "docs/LEARNINGS.md"
+  RULE: "Mọi Agent trước khi thực thi task BẮT BUỘC phải đọc docs/LEARNINGS.md để tránh lặp lại sai lầm cũ."
+
+# ------------------------------------------------------------------------------
+# 🏛️ ROLES & ASSIGNED SKILLS (10 VAI TRÒ & CÔNG CỤ CHUYÊN BIỆT)
+# ------------------------------------------------------------------------------
+ROLES:
+  - id: product-owner
+    name: "Product Owner (PO)"
+    skills: ["product-manager-toolkit", "jobs-to-be-done-analyst", "business-analyst", "competitive-landscape", "pricing-strategy", "brainstorming"]
+    primary_artifacts: ["docs/PRD.md", "docs/USER_STORIES.md", "docs/ROADMAP.md"]
+
+  - id: project-manager
+    name: "Project Manager / Scrum Master"
+    skills: ["concise-planning", "github-workflow-automation", "git-workflow-and-versioning", "decision-navigator", "architecture-decision-records"]
+    primary_artifacts: ["docs/TASKS.md", "docs/SPRINT_PLAN.md", "docs/ADR/"]
+
+  - id: ux-designer
+    name: "UX Researcher & Designer"
+    skills: ["ui-a11y", "accessibility-compliance-accessibility-audit", "form-cro", "customer-research", "ui-review", "ab-test-setup"]
+    primary_artifacts: ["docs/USER_FLOWS.md", "docs/A11Y_AUDIT.md"]
+
+  - id: ui-designer
+    name: "UI Designer"
+    skills: ["ui-ux-pro-max", "high-end-visual-design", "design-system", "canvas-design", "3d-web-experience", "shadcn", "tailwind-patterns"]
+    primary_artifacts: ["src/styles/design-tokens.css", "docs/UI_SPECIFICATION.md"]
+
+  - id: backend-developer
+    name: "Backend Developer & Architect"
+    skills: ["backend-architect", "backend-dev-guidelines", "api-patterns", "api-security-best-practices", "database-architect", "postgres-best-practices", "auth-implementation-patterns", "backend-security-coder"]
+    primary_artifacts: ["docs/openapi.yaml", "server/", "migrations/"]
+
+  - id: frontend-developer
+    name: "Frontend Developer"
+    skills: ["frontend-developer", "react-best-practices", "react-patterns", "tailwind-patterns", "typescript-expert", "frontend-optimistic-mutations", "frontend-security-coder"]
+    primary_artifacts: ["src/components/", "src/pages/", "src/app/"]
+
+  - id: fullstack-developer
+    name: "Full-Stack Developer"
+    skills: ["senior-fullstack", "full-stack-orchestration-full-stack-feature", "stripe-integration", "e2e-testing-patterns"]
+    primary_artifacts: ["src/", "server/", "docs/openapi.yaml"]
+
+  - id: mobile-developer
+    name: "Mobile Developer"
+    skills: ["expo-deployment", "expo-api-routes", "flutter-expert", "ios-developer", "android-jetpack-compose-expert", "mobile-design", "app-store-optimization"]
+    primary_artifacts: ["mobile/", "apps/mobile/"]
+
+  - id: qa-tester
+    name: "QA & Test Automation Engineer"
+    skills: ["test-driven-development", "browser-automation", "playwright-skill", "k6-load-testing", "systematic-debugging", "test-fixing", "code-review-checklist", "screen-reader-testing"]
+    primary_artifacts: ["tests/", "docs/QA_TEST_REPORT.md"]
+
+  - id: devops-engineer
+    name: "DevOps & Cloud Engineer"
+    skills: ["docker-expert", "ci-cd-and-automation", "github-actions-templates", "kubernetes-architect", "terraform-specialist", "deployment-procedures", "observability-engineer", "incident-responder", "bash-linux"]
+    primary_artifacts: ["Dockerfile", "docker-compose.yml", ".github/workflows/", "infra/", "docs/DEPLOYMENT_GUIDE.md"]
